@@ -35,7 +35,7 @@ function Resume({ data }) {
           </li>
         </ol>
         <div className="place-self-center w-full border-t-1 border-black"></div>
-        <p className="text-justify text-xs mt-3">
+        <p className="text-justify text-xs mt-3 break-all">
           {data.summary.length > 0
             ? data.summary
             : "Aspiring Software Developer with hands-on experience in full-stack web development, database management, and user interface design using React and Tailwind CSS. Skilled in integrating authentication, dynamic content, and scalable features. Eager to learn and contribute to innovative development teams."}
@@ -50,14 +50,12 @@ function Resume({ data }) {
           </h1>
           <div className="flex justify-between">
             <p>
-              {data.position.length > 0 && data.companyName.length > 0
-                ? `${data.position} at ${data.companyName}`
-                : "Web Developer at Meta"}
+              {data.position.length > 0 ? data.position : "Web Developer"} at{" "}
+              {data.companyName.length > 0 ? data.companyName : "Meta"}
             </p>
             <p className="text-xs">
-              {data.start?.length > 0
-                ? data.start + "-" + data.end
-                : "February 2022 - July 2025"}
+              {data.start.length > 0 ? data.start : "2022-04-16"} -
+              {data.end.length > 0 ? data.end : "2023-12-12"}
             </p>
           </div>
           <ol className="flex flex-col">
@@ -90,6 +88,21 @@ function Resume({ data }) {
               </>
             )}
           </ol>
+        </div>
+        <h1 className="font-bold">Educational Background</h1>
+        <div className="place-self-center w-full border-t-1 border-black"></div>
+        <div className="flex justify-between">
+          <h2>
+            {data.school.length > 0 ? data.school : "National University"} -{" "}
+            {data.titleStudy.length > 0
+              ? data.titleStudy
+              : "BS, Computer Science"}
+          </h2>
+          <h2>
+            {data.dateStudy.length > 0
+              ? data.dateStudy
+              : "August 2020 - May 2025"}
+          </h2>
         </div>
       </div>
 

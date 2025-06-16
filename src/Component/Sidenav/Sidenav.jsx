@@ -10,7 +10,7 @@ function Sidenav({ updateHandler, data, addExperienceTemplate }) {
   return (
     <div
       className={`${
-        isShow ? "w-14" : "w-1/3"
+        isShow ? "w-14" : "w-1/4"
       } bg-green-300 ease-in-out duration-100 h-screen`}
     >
       <button onClick={showSidebar}> {isShow ? "Show" : "Hide"}</button>

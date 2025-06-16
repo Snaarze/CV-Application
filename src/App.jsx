@@ -16,7 +16,9 @@ function App() {
     dateStudy: "",
     companyName: "",
     position: "",
-    duration: "",
+    expLocation: "",
+    start: "",
+    end: "",
   };
   const [data, setData] = useState(initialState);
 

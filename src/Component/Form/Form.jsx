@@ -1,17 +1,18 @@
 import React, { useState } from "react";
 
 function Form({ updateHandler, data, addExperienceTemplate }) {
+  const [activeIndex, setActiveIndex] = useState(0);
   return (
     <form action="" className="text-sm">
       <div className="flex flex-col gap-2 mx-2">
-        <h2>General Information</h2>
         <label htmlFor="name" className="flex flex-1 flex-col text-start">
           Name
           <input
             type="text"
             id="name"
             value={data.name}
-            className="flex flex-1 border-none border-1 rounded-sm  p-1 bg-white"
+            placeholder="John Doe"
+            className="flex flex-1 border-none border-1 rounded-sm  px-3 py-1 bg-white"
             onChange={(e) => updateHandler(e.target.id, e.target.value)}
             required
           />
@@ -21,7 +22,9 @@ function Form({ updateHandler, data, addExperienceTemplate }) {
           <input
             type="email"
             id="email"
-            className="flex flex-1 border-none border-1 rounded-sm  p-1 bg-white"
+            value={data.email}
+            className="flex flex-1 border-none border-1 rounded-sm  px-3 py-1 bg-white"
+            placeholder="johndoeprofessional@gmail.com"
             onChange={(e) => updateHandler(e.target.id, e.target.value)}
             required
           />
@@ -31,7 +34,8 @@ function Form({ updateHandler, data, addExperienceTemplate }) {
           <input
             type="tel"
             id="phone"
-            className="flex flex-1 border-none border-1 rounded-sm  p-1 bg-white"
+            placeholder="+63 1234567890"
+            className="flex flex-1 border-none border-1 rounded-sm  px-3 py-1 bg-white"
             onChange={(e) => updateHandler(e.target.id, e.target.value)}
             required
           />
@@ -41,20 +45,9 @@ function Form({ updateHandler, data, addExperienceTemplate }) {
           <input
             type="text"
             id="location"
-            className="flex flex-1 border-none border-1 rounded-sm  p-1 bg-white"
+            placeholder="Burges, New York USA"
+            className="flex flex-1 border-none border-1 rounded-sm  px-3 py-1 bg-white"
             onChange={(e) => updateHandler(e.target.id, e.target.value)}
-            required
-          />
-        </label>
-        <label htmlFor="location" className="flex flex-1 flex-col text-start">
-          Contribution :
-          <textarea
-            value={data.contribution}
-            type="text"
-            placeholder="separated by commas"
-            id="contribution"
-            className="flex flex-1 border-none border-1 rounded-sm  p-1 bg-white"
-            onChange={(e) => addExperienceTemplate(e.target.id, e.target.value)}
             required
           />
         </label>
@@ -63,7 +56,8 @@ function Form({ updateHandler, data, addExperienceTemplate }) {
           <textarea
             type="textarea"
             id="summary"
-            className="flex flex-1 border-none border-1 rounded-sm  p-1 bg-white"
+            placeholder="Aspiring Soft......."
+            className="flex flex-1 border-none border-1 rounded-sm  px-3 py-1 bg-white"
             onChange={(e) => updateHandler(e.target.id, e.target.value)}
             required
           />
@@ -72,40 +66,22 @@ function Form({ updateHandler, data, addExperienceTemplate }) {
 
       <div className="flex flex-col gap-2 mx-2">
         <h2>Educational Information</h2>
-        <label htmlFor="school" className="flex flex-1 flex-col text-start">
-          School
+
+        <label
+          htmlFor="companyLocation"
+          className="flex flex-1 flex-col text-start"
+        >
+          Company Location
           <input
             type="text"
-            id="school"
-            className="flex flex-1 border-none border-1 rounded-sm  p-1 bg-white "
-            onChange={(e) => updateHandler(e.target.id, e.target.value)}
-            required
-          />
-        </label>
-        <label htmlFor="titleStudy" className="flex flex-1 flex-col text-start">
-          Title of Study
-          <input
-            type="text"
-            id="titleStudy"
+            id="expLocation"
+            placeholder="Burges, New York USA"
             className="flex flex-1 border-none border-1 rounded-sm  p-1 bg-white"
             onChange={(e) => updateHandler(e.target.id, e.target.value)}
             required
           />
         </label>
-        <label htmlFor="dateStudy" className="flex flex-1 flex-col text-start">
-          Date Study
-          <input
-            type="date"
-            id="dateStudy"
-            className="flex flex-1  border-none rounded-sm  p-1 bg-white"
-            onChange={(e) => updateHandler(e.target.id, e.target.value)}
-            required
-          />
-        </label>
-      </div>
 
-      <div className="flex flex-col gap-2 mx-2">
-        <h2>Educational Information</h2>
         <label
           htmlFor="companyName"
           className="flex flex-1 flex-col text-start"
@@ -114,6 +90,8 @@ function Form({ updateHandler, data, addExperienceTemplate }) {
           <input
             type="text"
             id="companyName"
+            placeholder="Meta"
+            value={data.companyName}
             className="flex flex-1 border-none border-1 rounded-sm  p-1 bg-white"
             onChange={(e) => updateHandler(e.target.id, e.target.value)}
             required
@@ -129,16 +107,77 @@ function Form({ updateHandler, data, addExperienceTemplate }) {
             required
           />
         </label>
-        <label htmlFor="duration" className="flex flex-1 flex-col text-start">
-          Duration
-          <input
-            type="number"
-            id="duration"
-            className="flex flex-1 border-none border-1 rounded-sm  p-1 bg-white"
+        <div className="flex w-full gap-5">
+          <label htmlFor="start" className="flex flex-col text-start flex-1">
+            Start
+            <input
+              type="date"
+              id="start"
+              className="bg-white flex-1"
+              onChange={(e) => updateHandler(e.target.id, e.target.value)}
+            />
+          </label>
+          <label
+            htmlFor="end"
+            className="flex flex-col text-start flex-1"
             onChange={(e) => updateHandler(e.target.id, e.target.value)}
+          >
+            End
+            <input type="date" id="end" className="bg-white flex-1" />
+          </label>
+        </div>
+        <label htmlFor="location" className="flex flex-1 flex-col text-start">
+          Contribution :
+          <textarea
+            value={data.contribution}
+            type="text"
+            placeholder="Test1, Test2, test3"
+            id="contribution"
+            className="flex flex-1 border-none border-1 rounded-sm px-3   py-1 bg-white"
+            onChange={(e) => addExperienceTemplate(e.target.id, e.target.value)}
             required
           />
         </label>
+
+        <div className="flex flex-col gap-2 mx-2">
+          <h2>Educational Information</h2>
+          <label htmlFor="school" className="flex flex-1 flex-col text-start">
+            School
+            <input
+              type="text"
+              id="school"
+              className="flex flex-1 border-none border-1 rounded-sm  p-1 bg-white "
+              onChange={(e) => updateHandler(e.target.id, e.target.value)}
+              required
+            />
+          </label>
+          <label
+            htmlFor="titleStudy"
+            className="flex flex-1 flex-col text-start"
+          >
+            Title of Study
+            <input
+              type="text"
+              id="titleStudy"
+              className="flex flex-1 border-none border-1 rounded-sm  p-1 bg-white"
+              onChange={(e) => updateHandler(e.target.id, e.target.value)}
+              required
+            />
+          </label>
+          <label
+            htmlFor="dateStudy"
+            className="flex flex-1 flex-col text-start"
+          >
+            Date Study
+            <input
+              type="date"
+              id="dateStudy"
+              className="flex flex-1  border-none rounded-sm  p-1 bg-white"
+              onChange={(e) => updateHandler(e.target.id, e.target.value)}
+              required
+            />
+          </label>
+        </div>
       </div>
       <button
         type="submit"
